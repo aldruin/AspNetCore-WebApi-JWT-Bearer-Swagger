@@ -1,5 +1,4 @@
-﻿using CashFlowAPI.Domain.Base;
-namespace CashFlowAPI.Domain.Entities;
+﻿namespace CashFlowAPI.Domain.Entities;
 public class Sheet : Entity
 {
     public Guid UserId { get; set; }

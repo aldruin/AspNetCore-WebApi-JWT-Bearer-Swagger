@@ -1,4 +1,4 @@
-﻿namespace CashFlowAPI.Domain.Base;
+﻿namespace CashFlowAPI.Domain.Entities;
 public abstract class Entity
 {
 
