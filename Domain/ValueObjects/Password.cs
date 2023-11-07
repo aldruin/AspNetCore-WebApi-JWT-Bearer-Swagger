@@ -1,7 +1,7 @@
 ﻿namespace CashFlowAPI.Domain.ValueObjects;
 public class Password
 {
-    public string Value { get; }
+    public string Value { get; set; }
 
     public Password (string value)
     {
