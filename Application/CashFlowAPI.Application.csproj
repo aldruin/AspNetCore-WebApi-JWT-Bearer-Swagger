@@ -6,4 +6,17 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Finance\Dtos\" />
+    <Folder Include="Finance\Interfaces\" />
+    <Folder Include="Finance\Services\" />
+    <Folder Include="Sheet\Dtos\" />
+    <Folder Include="Sheet\Interfaces\" />
+    <Folder Include="Sheet\Services\" />
+    <Folder Include="User\" />
+    <Folder Include="User\Dtos\" />
+    <Folder Include="User\Interfaces\" />
+    <Folder Include="User\Services\" />
+  </ItemGroup>
+
 </Project>

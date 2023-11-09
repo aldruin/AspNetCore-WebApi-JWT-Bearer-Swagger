@@ -5,7 +5,7 @@ using CashFlowAPI.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CashFlowAPI.Infrastructure;
+namespace CashFlowAPI.Infrastructure.Configuration;
 public static class ConfigurationModule
 {
     public static IServiceCollection RegisterRepository(this IServiceCollection services, string connectionString)
