@@ -35,17 +35,26 @@ public class UserController : ControllerBase
     [HttpGet("GetAll")]
     public async Task<IActionResult> GetAllAsync()
     {
-        try
-        {
-            var users = await _userService.GetAllAsync();
-            if (users == null | !users.Any())
-                return NotFound("Nenhum usuário encontrado");
-            return Ok(users);
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(StatusCodes.Status500InternalServerError, "Ocorreu um erro interno.");
-        }
+        var users = await _userService.GetAllAsync();
+        if (users == null | !users.Any())
+            return NotFound("Nenhum usuário encontrado");
+        return Ok(users);
+    }
+
+    [HttpGet("GetById")]
+    public async Task<IActionResult>GetByIdAsync(Guid id)
+    {
+        var user = await _userService.GetUserById(id);
+        if (user == null)
+            return NotFound("O usuário não foi encontrado");
+        return Ok(user);
+    }
+
+    [HttpPut("UpdateById")]
+    public async Task<IActionResult>UpdateUserAsync(Guid id,[FromQuery] UserDto userdto)
+    {
+        var userUpdated = await _userService.UpdateUserAsync(userdto, id);
+        return Ok(userUpdated);
     }
 
     [HttpDelete("DeleteById")]
