@@ -9,21 +9,27 @@ public class User : Entity
     public string Name { get; set; }
     public Email Email { get; set; }
     public Password Password { get; set; }
-    public byte[] Salt { get; set; }
     public Sheet Sheet { get; set; }
+    public byte[] Salt { get; set; }
 
-    protected User() { }
-
-    public void Validate() => new UserValidator().ValidateAndThrow(this);
-    public void SetPassword(string newPassword, byte[] salt)
+    public void CreateAndAssociateSheet()
     {
-        string hashedPassword = SecurityUtils.HashSHA256(newPassword, salt);
-        Password = new Password(hashedPassword);
+        Sheet = Sheet.CreateNewSheet(Id);
     }
+    public void SetPassword(string password)
+    {
+        byte[] salt = SecurityUtils.GenerateSalt();
+        this.Salt = salt;
+        this.Password.Value = SecurityUtils.HashSHA256(password, salt);
+    }
+    public void Validate() => new UserValidator().ValidateAndThrow(this);
     public void Update (string name, Email email, Password password)
     {
         Name = name;
         Email = email;
         Password = password;
     }
+
+    protected User() { }
+
 }

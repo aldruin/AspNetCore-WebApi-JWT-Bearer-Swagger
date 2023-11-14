@@ -5,7 +5,7 @@
 namespace CashFlowAPI.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class v2ValueObjects : Migration
+    public partial class v2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

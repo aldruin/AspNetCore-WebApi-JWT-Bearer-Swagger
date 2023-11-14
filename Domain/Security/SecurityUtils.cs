@@ -1,4 +1,5 @@
-﻿using System.Security.Cryptography;
+﻿using CashFlowAPI.Domain.ValueObjects;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace CashFlowAPI.Domain.Security;

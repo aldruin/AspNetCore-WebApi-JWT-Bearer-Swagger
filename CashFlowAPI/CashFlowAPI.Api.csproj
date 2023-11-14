@@ -12,7 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\Application\CashFlowAPI.Application.csproj" />
+    <ProjectReference Include="..\Infrastructure\CashFlowAPI.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

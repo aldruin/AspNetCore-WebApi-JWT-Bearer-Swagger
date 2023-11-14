@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CashFlowAPI.Infrastructure.Migrations
 {
     [DbContext(typeof(CashFlowContext))]
-    [Migration("20231107131447_v3SecurityUtils_salt")]
-    partial class v3SecurityUtils_salt
+    [Migration("20231114123556_v4")]
+    partial class v4
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -110,8 +110,7 @@ namespace CashFlowAPI.Infrastructure.Migrations
 
                     b.Property<byte[]>("Salt")
                         .IsRequired()
-                        .HasColumnType("BLOB")
-                        .HasColumnName("Salt");
+                        .HasColumnType("BLOB");
 
                     b.HasKey("Id");
 

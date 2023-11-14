@@ -1,28 +1,29 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace CashFlowAPI.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class v3SecurityUtils_salt : Migration
+    public partial class v3 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<byte[]>(
-                name: "Salt",
+            migrationBuilder.AddColumn<Guid>(
+                name: "SheetId",
                 table: "Users",
-                type: "BLOB",
+                type: "TEXT",
                 nullable: false,
-                defaultValue: new byte[0]);
+                defaultValue: new Guid("00000000-0000-0000-0000-000000000000"));
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "Salt",
+                name: "SheetId",
                 table: "Users");
         }
     }

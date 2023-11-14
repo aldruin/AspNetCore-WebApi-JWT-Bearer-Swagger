@@ -4,11 +4,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CashFlowAPI.Api", "CashFlowAPI\CashFlowAPI.Api.csproj", "{0AB94275-1672-4090-A02A-F24E14C34A82}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D30AD1F1-AC12-4A8D-8770-6B4FDB181829} = {D30AD1F1-AC12-4A8D-8770-6B4FDB181829}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CashFlowAPI.Domain", "Domain\CashFlowAPI.Domain.csproj", "{1B00DE1D-AED0-4C21-922E-149788484243}"
-	ProjectSection(ProjectDependencies) = postProject
-		{FC3DF66F-C9B7-4B09-A98F-1E3FAFF999A0} = {FC3DF66F-C9B7-4B09-A98F-1E3FAFF999A0}
-	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CashFlowAPI.Infrastructure", "Infrastructure\CashFlowAPI.Infrastructure.csproj", "{D30AD1F1-AC12-4A8D-8770-6B4FDB181829}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -16,6 +16,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CashFlowAPI.Infrastructure"
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CashFlowAPI.Application", "Application\CashFlowAPI.Application.csproj", "{FC3DF66F-C9B7-4B09-A98F-1E3FAFF999A0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1B00DE1D-AED0-4C21-922E-149788484243} = {1B00DE1D-AED0-4C21-922E-149788484243}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
