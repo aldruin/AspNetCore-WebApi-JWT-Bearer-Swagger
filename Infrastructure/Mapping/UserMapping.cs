@@ -12,7 +12,8 @@ public class UserMapping : IEntityTypeConfiguration<User>
         builder.Property(p => p.Id).ValueGeneratedOnAdd();
         builder.Property(p => p.Name).IsRequired().HasMaxLength(128);
         builder.Property(p=>p.Salt).IsRequired();
-        builder.HasOne(x => x.Sheet).WithOne(x => x.User).HasForeignKey<Sheet>(x => x.UserId);
+
+        builder.HasMany(x => x.Sheets).WithOne().HasForeignKey(x => x.UserId);
 
         builder.OwnsOne(x => x.Email, p =>
         {

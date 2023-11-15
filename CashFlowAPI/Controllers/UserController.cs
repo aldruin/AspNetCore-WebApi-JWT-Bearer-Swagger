@@ -18,18 +18,10 @@ public class UserController : ControllerBase
     [HttpPost("Create")]
     public async Task<IActionResult> CreateUserAsync([FromQuery] UserDto userdto)
     {
-        try
-        {
-            if (userdto == null)
-                return BadRequest("Dados de usuário inválidos");
-            var newUser = await _userService.CreateUserAsync(userdto);
-            return Ok(newUser);
-        }
-        catch(Exception ex) 
-        {
-            return StatusCode(StatusCodes.Status400BadRequest, "Ocorreu um erro interno.");
-        }
-
+        if (userdto == null)
+            return BadRequest("Dados de usuário inválidos");
+        var newUser = await _userService.CreateUserAsync(userdto);
+        return Ok(newUser);
     }
 
     [HttpGet("GetAll")]

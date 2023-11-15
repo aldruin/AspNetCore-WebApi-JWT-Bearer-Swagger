@@ -24,7 +24,7 @@ public class UserService : IUserService
         var user = _mapper.Map<User>(userdto);
         user.Validate();
         user.SetPassword(userdto.Password.Value);
-        user.CreateAndAssociateSheet();
+        //user.CreateAndAssociateSheet();
         await _userRepository.AddAsync(user);
         return _mapper.Map<UserDto>(user);
     }

@@ -6,6 +6,8 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
 using CashFlowAPI.Application.Users.Interfaces;
+using CashFlowAPI.Application.Sheets.Interfaces;
+using CashFlowAPI.Application.Sheets.Services;
 
 namespace CashFlowAPI.Application.Configuration;
 public static class ConfigurationModule
@@ -17,7 +19,7 @@ public static class ConfigurationModule
         //services.AddMediatR(typeof(Application.ConfigurationModule).Assembly);
 
         services.AddScoped<IUserService, UserService>();
-        //services.AddScoped<ISheetService, SheetService>();
+        services.AddScoped<ISheetService, SheetService>();
         //services.AddScoped<IFinancialEntryService, FinancialEntryService>();
         //services.AddScoped<IFinancialExpenseService, FinancialExpenseService>();
         //services.AddScoped<IJwtService, JwtService>();

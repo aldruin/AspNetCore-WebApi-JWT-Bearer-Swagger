@@ -8,4 +8,5 @@ public class UserDto
     public string Name { get; set; }
     public Email Email { get; set; }
     public Password Password { get; set; }
+    public List<Sheet>? Sheets { get; set; }
 }

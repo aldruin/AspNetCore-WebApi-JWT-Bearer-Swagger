@@ -9,13 +9,8 @@ public class User : Entity
     public string Name { get; set; }
     public Email Email { get; set; }
     public Password Password { get; set; }
-    public Sheet Sheet { get; set; }
+    public List<Sheet> Sheets { get; set; } = new List<Sheet>();
     public byte[] Salt { get; set; }
-
-    public void CreateAndAssociateSheet()
-    {
-        Sheet = Sheet.CreateNewSheet(Id);
-    }
     public void SetPassword(string password)
     {
         byte[] salt = SecurityUtils.GenerateSalt();

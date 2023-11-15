@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using CashFlowAPI.Application.Sheets.Dtos;
 
-namespace CashFlowAPI.Application.Sheets.Interfaces
+namespace CashFlowAPI.Application.Sheets.Interfaces;
+public interface ISheetService
 {
-    internal class ISheetService
-    {
-    }
+    Task<SheetDto> CreateSheetAsync(SheetDto sheetdto);
+    Task<List<SheetDto>> GetAllAsync();
+    
 }

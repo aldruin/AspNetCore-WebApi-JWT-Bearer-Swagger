@@ -3,6 +3,7 @@ using System;
 using CashFlowAPI.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CashFlowAPI.Infrastructure.Migrations
 {
     [DbContext(typeof(CashFlowContext))]
-    partial class CashFlowContextModelSnapshot : ModelSnapshot
+    [Migration("20231115114029_v5")]
+    partial class v5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.13");
@@ -83,11 +86,6 @@ namespace CashFlowAPI.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(128)
-                        .HasColumnType("TEXT");
-
                     b.Property<Guid>("UserId")
                         .HasColumnType("TEXT");
 
@@ -142,11 +140,13 @@ namespace CashFlowAPI.Infrastructure.Migrations
 
             modelBuilder.Entity("CashFlowAPI.Domain.Entities.Sheet", b =>
                 {
-                    b.HasOne("CashFlowAPI.Domain.Entities.User", null)
+                    b.HasOne("CashFlowAPI.Domain.Entities.User", "User")
                         .WithMany("Sheets")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("CashFlowAPI.Domain.Entities.User", b =>
