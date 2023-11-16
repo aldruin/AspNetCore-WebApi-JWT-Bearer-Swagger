@@ -17,9 +17,9 @@ public class SheetController : ControllerBase
         _sheetService = sheetService;
     }
     [HttpPost("Create")]
-    public async Task<IActionResult> CreateSheetAsync([FromQuery] SheetDto sheetdto)
+    public async Task<IActionResult> CreateSheetAsync([FromQuery] SheetDto sheetDto)
     {
-        var newSheet = await _sheetService.CreateSheetAsync(sheetdto);
+        var newSheet = await _sheetService.CreateSheetAsync(sheetDto);
         return Ok(newSheet);
     }
 
@@ -30,5 +30,28 @@ public class SheetController : ControllerBase
         if (sheets == null | !sheets.Any())
             return NotFound("Nenhuma planilha encontrada.");
         return Ok(sheets);
+    }
+
+    [HttpGet("GetById")]
+    public async Task<IActionResult> GetByIdAsync(Guid sheetId)
+    {
+        var sheet = await _sheetService.GetByIdAsync(sheetId);
+        if (sheet == null)
+            return NotFound("Nenhuma planilha encontrada.");
+        return Ok(sheet);
+    }
+    [HttpPut("UpdateById")]
+    public async Task<IActionResult> UpdateByIdAsync(Guid sheetId, [FromQuery] SheetDto sheetDto)
+    {
+        var sheet = await _sheetService.UpdateByIdAsync(sheetId, sheetDto);
+        if (sheet == null)
+            return NotFound("Nenhuma planilha encontrada.");
+        return Ok(sheet);
+    }
+    [HttpDelete("DeleteById")]
+    public async Task<IActionResult>DeleteByIdAsync(Guid sheetId)
+    {
+        var sheet = await _sheetService.DeleteByIdAsync(sheetId);
+        return Ok("Planilha excluida com sucesso");
     }
 }

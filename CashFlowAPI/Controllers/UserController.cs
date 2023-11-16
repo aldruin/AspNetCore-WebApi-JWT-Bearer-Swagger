@@ -10,17 +10,17 @@ namespace CashFlowAPI.Api.Controllers;
 public class UserController : ControllerBase
 {
     private readonly IUserService _userService;
-    public UserController (IUserService userService)
+    public UserController(IUserService userService)
     {
         _userService = userService;
     }
 
     [HttpPost("Create")]
-    public async Task<IActionResult> CreateUserAsync([FromQuery] UserDto userdto)
+    public async Task<IActionResult> CreateUserAsync([FromQuery] UserDto userDto)
     {
-        if (userdto == null)
+        if (userDto == null)
             return BadRequest("Dados de usuário inválidos");
-        var newUser = await _userService.CreateUserAsync(userdto);
+        var newUser = await _userService.CreateUserAsync(userDto);
         return Ok(newUser);
     }
 
@@ -34,32 +34,25 @@ public class UserController : ControllerBase
     }
 
     [HttpGet("GetById")]
-    public async Task<IActionResult>GetByIdAsync(Guid id)
+    public async Task<IActionResult> GetByIdAsync(Guid userId)
     {
-        var user = await _userService.GetUserById(id);
+        var user = await _userService.GetUserById(userId);
         if (user == null)
             return NotFound("O usuário não foi encontrado");
         return Ok(user);
     }
 
     [HttpPut("UpdateById")]
-    public async Task<IActionResult>UpdateUserAsync(Guid id,[FromQuery] UserDto userdto)
+    public async Task<IActionResult> UpdateUserAsync(Guid userId, [FromQuery] UserDto userDto)
     {
-        var userUpdated = await _userService.UpdateUserAsync(userdto, id);
+        var userUpdated = await _userService.UpdateUserAsync(userDto, userId);
         return Ok(userUpdated);
     }
 
     [HttpDelete("DeleteById")]
-    public async Task<IActionResult> DeleteUserAsync(Guid id)
+    public async Task<IActionResult> DeleteUserAsync(Guid userId)
     {
-        try
-        {
-            var user = await _userService.DeleteUserAsync(id);
-            return Ok("Usuario excluido com sucesso");
-        }
-        catch
-        {
-            return StatusCode(StatusCodes.Status400BadRequest, "Ocorreu um erro interno");
-        }
+        var user = await _userService.DeleteUserAsync(userId);
+        return Ok("Usuario excluido com sucesso");
     }
 }

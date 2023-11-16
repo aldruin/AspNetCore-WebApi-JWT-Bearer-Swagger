@@ -17,46 +17,45 @@ public class UserService : IUserService
         _mapper = mapper;
     }
 
-    public async Task<UserDto> CreateUserAsync (UserDto userdto)
+    public async Task<UserDto> CreateUserAsync (UserDto userDto)
     {
-        if (await _userRepository.AnyAsync(x => x.Name == userdto.Name))
+        if (await _userRepository.AnyAsync(x => x.Name == userDto.Name))
             throw new Exception("O usuário já está cadastrado.");
-        var user = _mapper.Map<User>(userdto);
+        var user = _mapper.Map<User>(userDto);
         user.Validate();
-        user.SetPassword(userdto.Password.Value);
-        //user.CreateAndAssociateSheet();
+        user.SetPassword(userDto.Password.Value);
         await _userRepository.AddAsync(user);
         return _mapper.Map<UserDto>(user);
     }
-    public async Task<UserDto> UpdateUserAsync (UserDto userdto, Guid id)
+    public async Task<UserDto> UpdateUserAsync (UserDto userDto, Guid userId)
     {
-        var user = await _userRepository.GetByIdAsync(id);
-        user.Update(userdto.Name, userdto.Email, userdto.Password);
+        var user = await _userRepository.GetByIdAsync(userId);
+        user.Update(userDto.Name, userDto.Email, userDto.Password);
         user.Validate();
-        user.SetPassword(userdto.Password.Value);
+        user.SetPassword(userDto.Password.Value);
         if (user == null)
             throw new Exception("O usuario não foi encontrado.");
         await _userRepository.UpdateAsync(user);
         return _mapper.Map<UserDto>(user);
     }
-    public async Task<UserDto> DeleteUserAsync (Guid id)
+    public async Task<UserDto> DeleteUserAsync (Guid userId)
     {
-        var user = await _userRepository.GetByIdAsync(id);
+        var user = await _userRepository.GetByIdAsync(userId);
         if (user == null)
             throw new Exception("O usuario não foi encontrado.");
-        await _userRepository.DeleteAsync(id);
+        await _userRepository.DeleteAsync(userId);
         return null;
     }
-    public async Task<UserDto> GetUserById (Guid id)
+    public async Task<UserDto> GetUserById (Guid userId)
     {
-        var user = await _userRepository.GetByIdAsync(id);
+        var user = await _userRepository.GetUserById(userId);
         if (user == null)
             throw new Exception("O usuario não foi encontrado.");
         return _mapper.Map<UserDto>(user);
     }
     public async Task<List<UserDto>> GetAllAsync()
     {
-        var users = await _userRepository.GetAllAsync();
+        var users = await _userRepository.GetAllUsers();
         return _mapper.Map<List<UserDto>>(users);
     }
 }

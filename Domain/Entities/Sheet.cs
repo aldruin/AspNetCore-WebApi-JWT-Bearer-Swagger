@@ -8,4 +8,9 @@ public class Sheet : Entity
     public List<FinancialEntry> FinancialEntries { get; set; }
     public List<FinancialExpense> FinancialExpenses { get; set; }
     protected Sheet() { }
+
+    public void Update(string name)
+    {
+        Name = name;
+    }
 }
