@@ -14,6 +14,15 @@ public class UserRepository : Repository<User>, IUserRepository
     {
         try
         {
+            //var user = await Query
+            //    .Select(x => new
+            //    {
+            //        x.Name,
+            //        x.Sheets,
+            //        x.Email,
+            //        x.Password,
+                    
+            //    }).ToListAsync();
             var usersWithSheets = await Query.Include(u => u.Sheets).ToListAsync();
             return usersWithSheets;
         }
@@ -25,6 +34,6 @@ public class UserRepository : Repository<User>, IUserRepository
     }
     public async Task<User> GetUserById(Guid id)
     {
-        return await Query.Include("Sheets").FirstOrDefaultAsync(x => x.Id == id);
+        return await Query.Include(x=>x.Sheets).FirstOrDefaultAsync(x => x.Id == id);
     }
 }

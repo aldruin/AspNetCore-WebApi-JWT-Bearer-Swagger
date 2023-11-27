@@ -1,4 +1,5 @@
 ﻿
+using CashFlowAPI.Application.Finance.Dtos;
 using CashFlowAPI.Application.Sheets.Dtos;
 using CashFlowAPI.Application.Users.Dtos;
 using CashFlowAPI.Domain.Entities;
@@ -12,5 +13,7 @@ public class CashFlowProfile : AutoMapper.Profile
         CreateMap<UserDto, User>();
         CreateMap<Sheet, SheetDto>();
         CreateMap<SheetDto, Sheet>();
+        CreateMap<FinancialEntry, FinancialEntryDto>();
+        CreateMap<FinancialEntryDto, FinancialEntry>();
     }
 }

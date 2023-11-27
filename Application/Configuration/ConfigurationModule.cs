@@ -8,6 +8,8 @@ using System.Text;
 using CashFlowAPI.Application.Users.Interfaces;
 using CashFlowAPI.Application.Sheets.Interfaces;
 using CashFlowAPI.Application.Sheets.Services;
+using CashFlowAPI.Application.Finance.Interfaces;
+using CashFlowAPI.Application.Finance.Services;
 
 namespace CashFlowAPI.Application.Configuration;
 public static class ConfigurationModule
@@ -20,7 +22,7 @@ public static class ConfigurationModule
 
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<ISheetService, SheetService>();
-        //services.AddScoped<IFinancialEntryService, FinancialEntryService>();
+        services.AddScoped<IFinancialEntryService, FinancialEntryService>();
         //services.AddScoped<IFinancialExpenseService, FinancialExpenseService>();
         //services.AddScoped<IJwtService, JwtService>();
         //services.AddScoped<IAuthService, AuthService>();
