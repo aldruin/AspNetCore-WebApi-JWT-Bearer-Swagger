@@ -23,7 +23,7 @@ public static class ConfigurationModule
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<ISheetService, SheetService>();
         services.AddScoped<IFinancialEntryService, FinancialEntryService>();
-        //services.AddScoped<IFinancialExpenseService, FinancialExpenseService>();
+        services.AddScoped<IFinancialExpenseService, FinancialExpenseService>();
         //services.AddScoped<IJwtService, JwtService>();
         //services.AddScoped<IAuthService, AuthService>();
 

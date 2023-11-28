@@ -6,7 +6,14 @@ public class FinancialExpense : Entity
     public string Name { get; set; }
     public DateOnly ExpenseDate { get; set; }
     public decimal Value { get; set; }
-    public string Caregory { get; set; }
+    public string Category { get; set; }
 
     protected FinancialExpense() { }
+    public void Update(string name, decimal value, string category, DateOnly expensedate)
+    {
+        Name = name;
+        ExpenseDate = expensedate;
+        Value = value;
+        Category = category;
+    }
 }

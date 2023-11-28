@@ -10,12 +10,10 @@ namespace CashFlowAPI.Api.Controllers;
 public class FinancialEntryController : ControllerBase
 {
     private readonly IFinancialEntryService _financialEntryService;
-    private readonly ISheetService _sheetService;
 
-    public FinancialEntryController(IFinancialEntryService financialEntryService, ISheetService sheetService)
+    public FinancialEntryController(IFinancialEntryService financialEntryService)
     {
         _financialEntryService = financialEntryService;
-        _sheetService = sheetService;
     }
 
     [HttpPost("Create")]

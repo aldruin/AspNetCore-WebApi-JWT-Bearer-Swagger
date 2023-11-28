@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CashFlowAPI.Application.Finance.Dtos;
 
-namespace CashFlowAPI.Application.Finance.Interfaces
+namespace CashFlowAPI.Application.Finance.Interfaces;
+public interface IFinancialExpenseService
 {
-    public interface IFinancialExpenseService
-    {
-    }
+    Task<FinancialExpenseDto> CreateExpenseAsync(FinancialExpenseDto financialExpenseDto);
+    Task<FinancialExpenseDto> UpdateExpenseAsync(FinancialExpenseDto financialExpenseDto, Guid expenseId);
+    Task<FinancialExpenseDto> DeleteExpenseAsync(Guid expenseId);
+    Task<FinancialExpenseDto> GetExpenseById(Guid expenseId);
+    Task<List<FinancialExpenseDto>> GetAllAsync();
 }

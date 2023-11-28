@@ -10,6 +10,4 @@ public class FinancialEntryDto
     public decimal Value { get; set; }
     public string Category { get; set; }
     public DateOnly EntryDate { get; set; }
-    //public Sheet? Sheet { get; set; }
-
 }

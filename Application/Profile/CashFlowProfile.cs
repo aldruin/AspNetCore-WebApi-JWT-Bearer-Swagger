@@ -15,5 +15,7 @@ public class CashFlowProfile : AutoMapper.Profile
         CreateMap<SheetDto, Sheet>();
         CreateMap<FinancialEntry, FinancialEntryDto>();
         CreateMap<FinancialEntryDto, FinancialEntry>();
+        CreateMap<FinancialExpense, FinancialExpenseDto>();
+        CreateMap<FinancialExpenseDto, FinancialExpense>();
     }
 }

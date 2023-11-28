@@ -13,7 +13,7 @@ public class FinancialExpenseMapping : IEntityTypeConfiguration<FinancialExpense
         builder.Property(p => p.Id).ValueGeneratedOnAdd();
         builder.Property(p => p.Name).IsRequired();
         builder.Property(p => p.Value).IsRequired();
-        builder.Property(p => p.Caregory).IsRequired();
+        builder.Property(p => p.Category).IsRequired();
         builder.Property(p => p.ExpenseDate).IsRequired();
     }
 }
