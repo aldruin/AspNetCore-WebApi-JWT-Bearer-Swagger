@@ -31,6 +31,7 @@ public class UserRepository : Repository<User>, IUserRepository
 
     public async Task<User> GetByExpressionAsync(Expression<Func<User, bool>> expression)
     {
-        return await this.Query.FirstOrDefaultAsync(expression);
+        return await Query.AsNoTracking().FirstOrDefaultAsync(expression);
     }
+
 }

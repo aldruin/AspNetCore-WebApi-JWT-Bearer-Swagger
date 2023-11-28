@@ -23,6 +23,8 @@ namespace CashFlowAPI.Application.Jwt.Services
             var token = tokenHandler.CreateToken(GetTokenDescriptor(jwtDto));
 
             return tokenHandler.WriteToken(token);
+
+
         }
 
         public async Task<JwtTokenViewDto> ReadTokenAsync(string token)
@@ -41,6 +43,7 @@ namespace CashFlowAPI.Application.Jwt.Services
 
         private SecurityTokenDescriptor GetTokenDescriptor(JwtDto jwtDto)
         {
+
             var key = Encoding.ASCII.GetBytes(_configuration["JwtSecurity:SecurityKey"]);
 
             var tokenDescriptor = new SecurityTokenDescriptor
@@ -56,6 +59,7 @@ namespace CashFlowAPI.Application.Jwt.Services
             };
 
             return tokenDescriptor;
+
         }
     }
 }

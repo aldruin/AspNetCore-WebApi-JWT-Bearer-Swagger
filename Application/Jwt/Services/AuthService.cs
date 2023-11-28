@@ -1,7 +1,6 @@
 ﻿using CashFlowAPI.Application.Jwt.Dtos;
 using CashFlowAPI.Application.Jwt.Interfaces;
 using CashFlowAPI.Domain.Interfaces;
-
 namespace CashFlowAPI.Application.Jwt.Services;
 public class AuthService : IAuthService
 {
