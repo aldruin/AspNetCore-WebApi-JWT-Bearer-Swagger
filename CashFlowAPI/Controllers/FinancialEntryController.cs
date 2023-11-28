@@ -1,12 +1,13 @@
 ﻿using CashFlowAPI.Application.Finance.Dtos;
 using CashFlowAPI.Application.Finance.Interfaces;
 using CashFlowAPI.Application.Sheets.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CashFlowAPI.Api.Controllers;
 [Route("api/[Controller]")]
 [ApiController]
-//[Authorize]
+[Authorize]
 public class FinancialEntryController : ControllerBase
 {
     private readonly IFinancialEntryService _financialEntryService;

@@ -3,6 +3,7 @@ using CashFlowAPI.Domain.Interfaces;
 using CashFlowAPI.Infrastructure.Context;
 using CashFlowAPI.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace CashFlowAPI.Infrastructure.Repositories;
 public class UserRepository : Repository<User>, IUserRepository
@@ -14,15 +15,6 @@ public class UserRepository : Repository<User>, IUserRepository
     {
         try
         {
-            //var user = await Query
-            //    .Select(x => new
-            //    {
-            //        x.Name,
-            //        x.Sheets,
-            //        x.Email,
-            //        x.Password,
-                    
-            //    }).ToListAsync();
             var usersWithSheets = await Query.Include(u => u.Sheets).ToListAsync();
             return usersWithSheets;
         }
@@ -35,5 +27,10 @@ public class UserRepository : Repository<User>, IUserRepository
     public async Task<User> GetUserById(Guid id)
     {
         return await Query.Include(x=>x.Sheets).FirstOrDefaultAsync(x => x.Id == id);
+    }
+
+    public async Task<User> GetByExpressionAsync(Expression<Func<User, bool>> expression)
+    {
+        return await this.Query.FirstOrDefaultAsync(expression);
     }
 }

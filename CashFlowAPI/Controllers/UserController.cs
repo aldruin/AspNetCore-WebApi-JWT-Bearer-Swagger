@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CashFlowAPI.Api.Controllers;
 [Route("api/[Controller]")]
 [ApiController]
-//[Authorize]
+[Authorize]
 public class UserController : ControllerBase
 {
     private readonly IUserService _userService;

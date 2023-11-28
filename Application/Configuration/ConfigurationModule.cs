@@ -10,6 +10,8 @@ using CashFlowAPI.Application.Sheets.Interfaces;
 using CashFlowAPI.Application.Sheets.Services;
 using CashFlowAPI.Application.Finance.Interfaces;
 using CashFlowAPI.Application.Finance.Services;
+using CashFlowAPI.Application.Jwt.Interfaces;
+using CashFlowAPI.Application.Jwt.Services;
 
 namespace CashFlowAPI.Application.Configuration;
 public static class ConfigurationModule
@@ -18,14 +20,13 @@ public static class ConfigurationModule
                 IConfiguration configuration)
     {
         services.AddAutoMapper(typeof(ConfigurationModule).Assembly);
-        //services.AddMediatR(typeof(Application.ConfigurationModule).Assembly);
 
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<ISheetService, SheetService>();
         services.AddScoped<IFinancialEntryService, FinancialEntryService>();
         services.AddScoped<IFinancialExpenseService, FinancialExpenseService>();
-        //services.AddScoped<IJwtService, JwtService>();
-        //services.AddScoped<IAuthService, AuthService>();
+        services.AddScoped<IJwtService, JwtService>();
+        services.AddScoped<IAuthService, AuthService>();
 
         services.AddHttpClient();
 

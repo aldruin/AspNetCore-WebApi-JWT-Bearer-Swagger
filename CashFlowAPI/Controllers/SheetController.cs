@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CashFlowAPI.Api.Controllers;
 [Route("api/[Controller]")]
 [ApiController]
-//[Authorize]
+[Authorize]
 public class SheetController : ControllerBase
 {
     private readonly ISheetService _sheetService;
