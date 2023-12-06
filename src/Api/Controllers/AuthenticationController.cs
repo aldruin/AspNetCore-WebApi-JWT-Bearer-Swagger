@@ -1,6 +1,6 @@
-﻿using CashFlowAPI.Application.Jwt.Dtos;
-using CashFlowAPI.Application.Jwt.Interfaces;
-using CashFlowAPI.Application.Users.Interfaces;
+﻿using CashFlowAPI.Application.Dtos.Jwt;
+using CashFlowAPI.Application.Interfaces;
+using CashFlowAPI.Application.Interfaces.Jwt;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CashFlowAPI.Api.Controllers;

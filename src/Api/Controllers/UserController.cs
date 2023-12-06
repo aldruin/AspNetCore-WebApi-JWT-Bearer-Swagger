@@ -1,12 +1,12 @@
-﻿using CashFlowAPI.Application.Users.Dtos;
-using CashFlowAPI.Application.Users.Interfaces;
+﻿using CashFlowAPI.Application.Dtos;
+using CashFlowAPI.Application.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CashFlowAPI.Api.Controllers;
 [Route("api/[Controller]")]
 [ApiController]
-[Authorize]
+//[Authorize]
 public class UserController : ControllerBase
 {
     private readonly IUserService _userService;

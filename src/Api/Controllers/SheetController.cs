@@ -1,5 +1,5 @@
-﻿using CashFlowAPI.Application.Sheets.Dtos;
-using CashFlowAPI.Application.Sheets.Interfaces;
+﻿using CashFlowAPI.Application.Dtos;
+using CashFlowAPI.Application.Interfaces;
 using CashFlowAPI.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

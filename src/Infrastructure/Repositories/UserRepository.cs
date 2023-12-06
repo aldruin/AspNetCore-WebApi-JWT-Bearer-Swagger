@@ -8,7 +8,7 @@ using System.Linq.Expressions;
 namespace CashFlowAPI.Infrastructure.Repositories;
 public class UserRepository : Repository<User>, IUserRepository
 {
-    public UserRepository(CashFlowContext context) : base(context)
+    public UserRepository(AppDbContext context) : base(context)
     {
     }
     public async Task<ICollection<User>> GetAllUsers()

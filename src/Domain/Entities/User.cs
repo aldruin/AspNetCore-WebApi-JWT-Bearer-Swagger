@@ -1,4 +1,5 @@
-﻿using CashFlowAPI.Domain.Rules;
+﻿using CashFlowAPI.Domain.Common;
+using CashFlowAPI.Domain.Rules;
 using CashFlowAPI.Domain.Security;
 using CashFlowAPI.Domain.ValueObjects;
 using FluentValidation;

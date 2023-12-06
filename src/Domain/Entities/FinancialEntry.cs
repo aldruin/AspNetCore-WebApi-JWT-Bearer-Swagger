@@ -1,4 +1,5 @@
-﻿using CashFlowAPI.Domain.ValueObjects;
+﻿using CashFlowAPI.Domain.Common;
+using CashFlowAPI.Domain.ValueObjects;
 
 namespace CashFlowAPI.Domain.Entities;
 public class FinancialEntry : Entity

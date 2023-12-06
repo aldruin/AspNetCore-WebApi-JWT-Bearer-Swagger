@@ -1,4 +1,6 @@
-﻿namespace CashFlowAPI.Domain.Entities;
+﻿using CashFlowAPI.Domain.Common;
+
+namespace CashFlowAPI.Domain.Entities;
 public class FinancialExpense : Entity
 {
     public Guid SheetId { get; set; }

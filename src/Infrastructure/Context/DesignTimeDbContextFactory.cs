@@ -3,18 +3,20 @@ using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 
 namespace CashFlowAPI.Infrastructure.Context;
-public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<CashFlowContext>
+public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<AppDbContext>
 {
-    public CashFlowContext CreateDbContext(string[] args)
+    public AppDbContext CreateDbContext(string[] args)
     {
+
         var config = new ConfigurationBuilder()
+            .AddUserSecrets<AppDbContext>()
             .AddEnvironmentVariables()
             .Build();
 
-        var builder = new DbContextOptionsBuilder<CashFlowContext>();
-        var connectionString = config.GetConnectionString("CashFlow");
-        builder.UseSqlite("Data Source=CashFlowDb.db");
+        var builder = new DbContextOptionsBuilder<AppDbContext>();
+        var connectionString = config.GetConnectionString("DefaultConnection");
+        builder.UseSqlServer(connectionString);
         Console.WriteLine(connectionString);
-        return new CashFlowContext(builder.Options);
+        return new AppDbContext(builder.Options);
     }
 }

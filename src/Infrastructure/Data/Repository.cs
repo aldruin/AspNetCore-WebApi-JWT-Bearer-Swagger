@@ -10,7 +10,7 @@ public class Repository<T> : IRepository<T> where T : class
     protected DbSet<T> Query { get; set; }
     protected DbContext Context { get; set; }
 
-    public Repository(CashFlowContext context)
+    public Repository(AppDbContext context)
     {
         Context = context;
         Query = Context.Set<T>();

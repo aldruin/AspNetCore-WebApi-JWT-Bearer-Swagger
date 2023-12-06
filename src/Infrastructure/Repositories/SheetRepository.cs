@@ -6,7 +6,7 @@ using CashFlowAPI.Infrastructure.Data;
 namespace CashFlowAPI.Infrastructure.Repositories;
 public class SheetRepository : Repository<Sheet>, ISheetRepository
 {
-    public SheetRepository(CashFlowContext context) : base(context)
+    public SheetRepository(AppDbContext context) : base(context)
     {
     }
 }

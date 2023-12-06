@@ -1,4 +1,5 @@
 ﻿using System.Text.Json.Serialization;
+using CashFlowAPI.Domain.Common;
 
 namespace CashFlowAPI.Domain.Entities;
 public class Sheet : Entity

@@ -1,5 +1,6 @@
 using CashFlowAPI.Application.Configuration;
-using CashFlowAPI.Infrastructure.Configuration;
+using CashFlowAPI.Infrastructure;
+
 namespace CashFlowAPI.Api;
 public class Program
 {
@@ -9,7 +10,7 @@ public class Program
         builder.Services.AddControllers();
         builder.Services
             .RegisterApplication(builder.Configuration)
-            .RegisterRepository(builder.Configuration.GetConnectionString("CashFlow"));
+            .RegisterRepository(builder.Configuration.GetConnectionString("DefaultConnection"));
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
         var app = builder.Build();

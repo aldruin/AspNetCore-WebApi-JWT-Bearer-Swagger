@@ -1,5 +1,5 @@
-﻿using CashFlowAPI.Application.Finance.Dtos;
-using CashFlowAPI.Application.Finance.Interfaces;
+﻿using CashFlowAPI.Application.Dtos;
+using CashFlowAPI.Application.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

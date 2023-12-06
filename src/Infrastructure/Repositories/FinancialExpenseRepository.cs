@@ -6,7 +6,7 @@ using CashFlowAPI.Infrastructure.Data;
 namespace CashFlowAPI.Infrastructure.Repositories;
 public class FinancialExpenseRepository : Repository<FinancialExpense>, IFinancialExpenseRepository
 {
-    public FinancialExpenseRepository(CashFlowContext context) : base(context)
+    public FinancialExpenseRepository(AppDbContext context) : base(context)
     {
     }
 }
