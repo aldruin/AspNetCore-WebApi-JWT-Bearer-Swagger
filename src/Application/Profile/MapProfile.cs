@@ -12,9 +12,14 @@ public class MapProfile : AutoMapper.Profile
         CreateMap<UserDto, User>();
         CreateMap<Sheet, SheetDto>();
         CreateMap<SheetDto, Sheet>();
-        CreateMap<FinancialEntry, FinancialEntryDto>();
-        CreateMap<FinancialEntryDto, FinancialEntry>();
-        CreateMap<FinancialExpense, FinancialExpenseDto>();
-        CreateMap<FinancialExpenseDto, FinancialExpense>();
+        CreateMap<FinancialEntry, FinancialEntryDto>()
+                        .ForMember(dest => dest.Value, opt => opt.MapFrom(src => src.Value.ToString()));
+        CreateMap<FinancialEntryDto, FinancialEntry>()
+            .ForMember(dest => dest.Value, opt => opt.MapFrom(src => Convert.ToDecimal(src.Value)));
+        CreateMap<FinancialExpense, FinancialExpenseDto>()
+            .ForMember(dest => dest.Value, opt => opt.MapFrom(src => src.Value.ToString()));
+        CreateMap<FinancialExpenseDto, FinancialExpense>()
+            .ForMember(dest => dest.Value, opt => opt.MapFrom(src => Convert.ToDecimal(src.Value)));
     }
 }
+

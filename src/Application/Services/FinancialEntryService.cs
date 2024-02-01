@@ -28,10 +28,17 @@ public class FinancialEntryService : IFinancialEntryService
     }
     public async Task<FinancialEntryDto> UpdateEntryAsync(FinancialEntryDto financialEntryDto, Guid entryId)
     {
+        if (financialEntryDto == null)
+            throw new ArgumentNullException(nameof(financialEntryDto));
+        
         var entry = await _financialEntryRepository.GetByIdAsync(entryId);
+
         if (entry == null)
             throw new Exception("O usuario não foi encontrado.");
-        entry.Update(financialEntryDto.Name, financialEntryDto.Value, financialEntryDto.Category, financialEntryDto.EntryDate);
+
+        decimal convertedValue = financialEntryDto.ConvertValueToDecimal();
+
+        entry.Update(financialEntryDto.Name, convertedValue, financialEntryDto.Category, financialEntryDto.EntryDate);
         await _financialEntryRepository.UpdateAsync(entry);
         return _mapper.Map<FinancialEntryDto>(entry);
     }
