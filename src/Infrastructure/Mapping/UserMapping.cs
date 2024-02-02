@@ -12,6 +12,7 @@ public class UserMapping : IEntityTypeConfiguration<User>
         builder.Property(p => p.Id).ValueGeneratedOnAdd();
         builder.Property(p => p.Name).IsRequired().HasMaxLength(128);
         builder.Property(p=>p.Salt).IsRequired();
+        builder.Property(p=>p.Role).IsRequired();
 
         builder.HasMany(x => x.Sheets).WithOne().HasForeignKey(x => x.UserId);
 
