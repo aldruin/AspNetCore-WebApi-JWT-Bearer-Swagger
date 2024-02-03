@@ -1,6 +1,7 @@
 ﻿using CashFlowAPI.Application.Dtos.Jwt;
 using CashFlowAPI.Application.Interfaces.Jwt;
 using CashFlowAPI.Domain.Interfaces;
+using Microsoft.AspNetCore.Identity;
 namespace CashFlowAPI.Application.Services.Jwt;
 public class AuthService : IAuthService
 {
@@ -17,13 +18,14 @@ public class AuthService : IAuthService
     {
         var user = await _userRepository.GetByExpressionAsync(x => x.Email.Value == request.Email);
         if (user == null) { return null; }
-        var jwtToken = await _jwtService.GenerateToken(new JwtDto(user.Id, user.Email.Value));
+        var jwtToken = await _jwtService.GenerateToken(new JwtDto(user.Id, user.Email.Value, user.Role.ToString()));
 
         return new UserResponse
         {
             Id = user.Id,
             Email = user.Email.Value,
             JwtToken = jwtToken,
+            Role = user.Role.ToString(),
         };
     }
 }

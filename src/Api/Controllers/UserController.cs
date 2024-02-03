@@ -24,6 +24,7 @@ public class UserController : ControllerBase
         return Ok(newUser);
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpGet("GetAll")]
     public async Task<IActionResult> GetAllAsync()
     {
@@ -33,6 +34,7 @@ public class UserController : ControllerBase
         return Ok(users);
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpGet("GetById")]
     public async Task<IActionResult> GetByIdAsync(Guid userId)
     {
@@ -42,6 +44,7 @@ public class UserController : ControllerBase
         return Ok(user);
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpPut("UpdateById")]
     public async Task<IActionResult> UpdateUserAsync(Guid userId, [FromQuery] UserDto userDto)
     {
@@ -49,6 +52,7 @@ public class UserController : ControllerBase
         return Ok(userUpdated);
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpDelete("DeleteById")]
     public async Task<IActionResult> DeleteUserAsync(Guid userId)
     {

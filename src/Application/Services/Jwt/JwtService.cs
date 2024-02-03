@@ -36,7 +36,8 @@ namespace CashFlowAPI.Application.Services.Jwt
                 new JwtTokenViewDto
                 {
                     Id = Guid.Parse(jwtSecurityToken.Claims.FirstOrDefault(u => u.Type == "sub")?.Value),
-                    Email = jwtSecurityToken.Claims.FirstOrDefault(u => u.Type == "email")?.Value
+                    Email = jwtSecurityToken.Claims.FirstOrDefault(u => u.Type == "email")?.Value,
+                    Role = jwtSecurityToken.Claims.FirstOrDefault(u=>u.Type =="role")?.Value
                 }
             );
         }
@@ -52,6 +53,7 @@ namespace CashFlowAPI.Application.Services.Jwt
                 {
                     new Claim(ClaimTypes.Email, jwtDto.Email.ToString()),
                     new Claim(JwtRegisteredClaimNames.Sub, jwtDto.Id.ToString()),
+                    new Claim(ClaimTypes.Role, jwtDto.Role.ToString()),
 
                 }),
                 Expires = DateTime.UtcNow.AddHours(double.Parse(_configuration["JwtSecurity:Expiration"])),

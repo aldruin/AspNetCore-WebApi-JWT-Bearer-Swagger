@@ -8,6 +8,7 @@ using CashFlowAPI.Application.Interfaces;
 using CashFlowAPI.Application.Interfaces.Jwt;
 using CashFlowAPI.Application.Services;
 using CashFlowAPI.Application.Services.Jwt;
+using System.Security.Claims;
 
 namespace CashFlowAPI.Application.Configuration;
 public static class ConfigurationModule
@@ -50,6 +51,23 @@ public static class ConfigurationModule
                 ValidateAudience = false,
                 ValidateLifetime = true
             };
+            //
+            x.Events = new JwtBearerEvents
+            {
+                OnTokenValidated = context =>
+                {
+                    var claims = context.Principal.Claims;
+                    var roleClaim = claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+
+                    if (string.IsNullOrEmpty(roleClaim))
+                    {
+                        context.Fail("Role claim is missing.");
+                    }
+
+                    return Task.CompletedTask;
+                }
+            };
+            //
         });
 
         var info = new OpenApiInfo();
