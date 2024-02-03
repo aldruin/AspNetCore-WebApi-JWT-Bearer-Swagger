@@ -2,6 +2,7 @@
 using CashFlowAPI.Application.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace CashFlowAPI.Api.Controllers;
 [Route("api/[Controller]")]
@@ -34,28 +35,32 @@ public class UserController : ControllerBase
         return Ok(users);
     }
 
-    [Authorize(Roles = "Admin")]
+    [Authorize]
     [HttpGet("GetById")]
-    public async Task<IActionResult> GetByIdAsync(Guid userId)
+    public async Task<IActionResult> GetByIdAsync()
     {
+        Guid userId = Guid.Parse(HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+        //bool validUser = Guid.TryParse(HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value, out Guid userId);
         var user = await _userService.GetUserById(userId);
         if (user == null)
             return NotFound("O usuário não foi encontrado");
         return Ok(user);
     }
 
-    [Authorize(Roles = "Admin")]
+    [Authorize]
     [HttpPut("UpdateById")]
-    public async Task<IActionResult> UpdateUserAsync(Guid userId, [FromQuery] UserDto userDto)
+    public async Task<IActionResult> UpdateUserAsync([FromQuery] UserDto userDto)
     {
+        Guid userId = Guid.Parse(HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
         var userUpdated = await _userService.UpdateUserAsync(userDto, userId);
         return Ok(userUpdated);
     }
 
-    [Authorize(Roles = "Admin")]
+    [Authorize]
     [HttpDelete("DeleteById")]
-    public async Task<IActionResult> DeleteUserAsync(Guid userId)
+    public async Task<IActionResult> DeleteUserAsync()
     {
+        Guid userId = Guid.Parse(HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
         var user = await _userService.DeleteUserAsync(userId);
         return Ok("Usuario excluido com sucesso");
     }

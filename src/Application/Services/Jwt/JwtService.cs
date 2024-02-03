@@ -35,7 +35,7 @@ namespace CashFlowAPI.Application.Services.Jwt
             return await Task.FromResult(
                 new JwtTokenViewDto
                 {
-                    Id = Guid.Parse(jwtSecurityToken.Claims.FirstOrDefault(u => u.Type == "sub")?.Value),
+                    Id = Guid.Parse(jwtSecurityToken.Claims.FirstOrDefault(u => u.Type == "nameidentifier")?.Value),
                     Email = jwtSecurityToken.Claims.FirstOrDefault(u => u.Type == "email")?.Value,
                     Role = jwtSecurityToken.Claims.FirstOrDefault(u=>u.Type =="role")?.Value
                 }
@@ -52,7 +52,7 @@ namespace CashFlowAPI.Application.Services.Jwt
                 Subject = new ClaimsIdentity(new Claim[]
                 {
                     new Claim(ClaimTypes.Email, jwtDto.Email.ToString()),
-                    new Claim(JwtRegisteredClaimNames.Sub, jwtDto.Id.ToString()),
+                    new Claim(ClaimTypes.NameIdentifier, jwtDto.Id.ToString()),
                     new Claim(ClaimTypes.Role, jwtDto.Role.ToString()),
 
                 }),
