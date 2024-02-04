@@ -29,6 +29,9 @@ public class UserController : ControllerBase
     [HttpGet("GetAll")]
     public async Task<IActionResult> GetAllAsync()
     {
+        //implementação de segurança:
+        //verifica se usuário atual é admin
+        //se, ok, senão, acesso negado.
         var users = await _userService.GetAllAsync();
         if (users == null | !users.Any())
             return NotFound("Nenhum usuário encontrado");

@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CashFlowAPI.Api.Controllers;
 [Route("api/[Controller]")]
 [ApiController]
-[Authorize]
+//[Authorize]
 public class SheetController : ControllerBase
 {
     private readonly ISheetService _sheetService;
@@ -16,6 +16,8 @@ public class SheetController : ControllerBase
     {
         _sheetService = sheetService;
     }
+
+    [Authorize]
     [HttpPost("Create")]
     public async Task<IActionResult> CreateSheetAsync([FromQuery] SheetDto sheetDto)
     {
@@ -23,6 +25,7 @@ public class SheetController : ControllerBase
         return Ok(newSheet);
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpGet("GetAll")]
     public async Task <IActionResult> GetAllAsync()
     {
@@ -32,25 +35,39 @@ public class SheetController : ControllerBase
         return Ok(sheets);
     }
 
+    [Authorize]
     [HttpGet("GetById")]
     public async Task<IActionResult> GetByIdAsync(Guid sheetId)
     {
+        //implementar:
+        //verifica se sheetId pertende à userId
+        //senão, acesso negado
         var sheet = await _sheetService.GetByIdAsync(sheetId);
         if (sheet == null)
             return NotFound("Nenhuma planilha encontrada.");
         return Ok(sheet);
     }
+
+    [Authorize]
     [HttpPut("UpdateById")]
     public async Task<IActionResult> UpdateByIdAsync(Guid sheetId, [FromQuery] SheetDto sheetDto)
     {
+        //implementar:
+        //verifica se sheetId pertende à userId
+        //senão, acesso negado
         var sheet = await _sheetService.UpdateByIdAsync(sheetId, sheetDto);
         if (sheet == null)
             return NotFound("Nenhuma planilha encontrada.");
         return Ok(sheet);
     }
+
+    [Authorize]
     [HttpDelete("DeleteById")]
     public async Task<IActionResult>DeleteByIdAsync(Guid sheetId)
     {
+        //implementar:
+        //verifica se sheetId pertende à userId
+        //senão, acesso negado
         var sheet = await _sheetService.DeleteByIdAsync(sheetId);
         return Ok("Planilha excluida com sucesso");
     }
