@@ -6,7 +6,7 @@ using CashFlowAPI.Domain.Interfaces;
 using CashFlowAPI.Domain.Security;
 
 namespace CashFlowAPI.Application.Services;
-public class UserService : IUserService
+public sealed class UserService : IUserService
 {
     private readonly IUserRepository _userRepository;
     private readonly IMapper _mapper;

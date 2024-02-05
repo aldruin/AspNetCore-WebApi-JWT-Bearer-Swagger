@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace CashFlowAPI.Infrastructure.Mapping;
 
-public class FinancialExpenseMapping : IEntityTypeConfiguration<FinancialExpense>
+public sealed class FinancialExpenseMapping : IEntityTypeConfiguration<FinancialExpense>
 {
     public void Configure(EntityTypeBuilder<FinancialExpense> builder)
     {

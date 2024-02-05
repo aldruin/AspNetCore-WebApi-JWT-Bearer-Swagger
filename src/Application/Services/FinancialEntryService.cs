@@ -5,7 +5,7 @@ using CashFlowAPI.Domain.Entities;
 using CashFlowAPI.Domain.Interfaces;
 
 namespace CashFlowAPI.Application.Services;
-public class FinancialEntryService : IFinancialEntryService
+public sealed class FinancialEntryService : IFinancialEntryService
 {
     private readonly IFinancialEntryRepository _financialEntryRepository;
     private readonly IMapper _mapper;
@@ -30,7 +30,7 @@ public class FinancialEntryService : IFinancialEntryService
     {
         if (financialEntryDto == null)
             throw new ArgumentNullException(nameof(financialEntryDto));
-        
+
         var entry = await _financialEntryRepository.GetByIdAsync(entryId);
 
         if (entry == null)

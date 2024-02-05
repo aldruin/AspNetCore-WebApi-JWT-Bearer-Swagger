@@ -6,7 +6,7 @@ using CashFlowAPI.Domain.ValueObjects;
 using FluentValidation;
 
 namespace CashFlowAPI.Domain.Entities;
-public class User : Entity
+public sealed class User : Entity
 {
     public UserRoles Role { get; set; }
     public string Name { get; set; }
@@ -26,7 +26,7 @@ public class User : Entity
 
     public void Validate() => new UserValidator().ValidateAndThrow(this);
 
-    public void Update (string name, Email email, Password password)
+    public void Update(string name, Email email, Password password)
     {
         Name = name;
         Email = email;

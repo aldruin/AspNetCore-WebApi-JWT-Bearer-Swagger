@@ -1,5 +1,5 @@
 ﻿namespace CashFlowAPI.Domain.ValueObjects;
-public class Email
+public sealed class Email
 {
     public string Value { get; set; }
     public Email() { }

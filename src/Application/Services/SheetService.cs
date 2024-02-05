@@ -5,7 +5,7 @@ using CashFlowAPI.Domain.Entities;
 using CashFlowAPI.Domain.Interfaces;
 
 namespace CashFlowAPI.Application.Services;
-public class SheetService : ISheetService
+public sealed class SheetService : ISheetService
 {
     private readonly ISheetRepository _sheetRepository;
     private readonly IMapper _mapper;
@@ -34,6 +34,11 @@ public class SheetService : ISheetService
     {
         var sheet = await _sheetRepository.GetByIdAsync(sheetId);
         return _mapper.Map<SheetDto>(sheet);
+    }
+    public async Task<List<SheetDto>> GetAllByUserIdAsync(Guid userId)
+    {
+        var sheets = await _sheetRepository.GetSheetsByUserIdAsync(userId);
+        return _mapper.Map<List<SheetDto>>(sheets);
     }
     public async Task<SheetDto> UpdateByIdAsync(Guid sheetId, SheetDto sheetDto)
     {

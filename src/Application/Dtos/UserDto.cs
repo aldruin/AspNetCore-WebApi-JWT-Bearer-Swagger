@@ -3,7 +3,7 @@ using CashFlowAPI.Domain.Enum;
 using CashFlowAPI.Domain.ValueObjects;
 
 namespace CashFlowAPI.Application.Dtos;
-public class UserDto
+public sealed class UserDto
 {
     public Guid? Id { get; set; }
     public UserRoles Role { get; set; }

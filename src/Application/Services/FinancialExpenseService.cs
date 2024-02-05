@@ -6,7 +6,7 @@ using CashFlowAPI.Domain.Entities;
 using CashFlowAPI.Domain.Interfaces;
 
 namespace CashFlowAPI.Application.Services;
-public class FinancialExpenseService : IFinancialExpenseService
+public sealed class FinancialExpenseService : IFinancialExpenseService
 {
     private readonly IFinancialExpenseRepository _financialExpenseRepository;
     private readonly IMapper _mapper;

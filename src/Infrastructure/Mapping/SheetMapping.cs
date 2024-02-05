@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace CashFlowAPI.Infrastructure.Mapping;
 
-public class SheetMapping : IEntityTypeConfiguration<Sheet>
+public sealed class SheetMapping : IEntityTypeConfiguration<Sheet>
 {
     public void Configure(EntityTypeBuilder<Sheet> builder)
     {

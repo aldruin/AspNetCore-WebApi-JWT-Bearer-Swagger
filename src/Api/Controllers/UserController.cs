@@ -8,7 +8,7 @@ namespace CashFlowAPI.Api.Controllers;
 [Route("api/[Controller]")]
 [ApiController]
 //[Authorize]
-public class UserController : ControllerBase
+public sealed class UserController : ControllerBase
 {
     private readonly IUserService _userService;
     public UserController(IUserService userService)

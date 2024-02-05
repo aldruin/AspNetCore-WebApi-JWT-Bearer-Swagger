@@ -1,5 +1,5 @@
 ﻿namespace CashFlowAPI.Application.Dtos.Jwt;
-public class JwtDto
+public sealed class JwtDto
 {
     public Guid Id { get; private set; }
     public string Email { get; private set; }

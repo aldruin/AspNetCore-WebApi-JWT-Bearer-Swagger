@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace CashFlowAPI.Infrastructure.Mapping;
 
-public class FinancialEntryMapping : IEntityTypeConfiguration<FinancialEntry>
+public sealed class FinancialEntryMapping : IEntityTypeConfiguration<FinancialEntry>
 {
     public void Configure(EntityTypeBuilder<FinancialEntry> builder)
     {
@@ -14,6 +14,6 @@ public class FinancialEntryMapping : IEntityTypeConfiguration<FinancialEntry>
         builder.Property(p => p.Name).IsRequired();
         builder.Property(p => p.Value).IsRequired().HasColumnType("decimal(18, 2)");
         builder.Property(p => p.Category).IsRequired();
-        builder.Property(p=>p.EntryDate).IsRequired();
+        builder.Property(p => p.EntryDate).IsRequired();
     }
 }

@@ -3,7 +3,7 @@ using CashFlowAPI.Application.Interfaces.Jwt;
 using CashFlowAPI.Domain.Interfaces;
 using Microsoft.AspNetCore.Identity;
 namespace CashFlowAPI.Application.Services.Jwt;
-public class AuthService : IAuthService
+public sealed class AuthService : IAuthService
 {
     private readonly IUserRepository _userRepository;
     private readonly IJwtService _jwtService;

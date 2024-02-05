@@ -7,7 +7,7 @@ namespace CashFlowAPI.Api.Controllers;
 [Route("api/[Controller]")]
 [ApiController]
 [Authorize]
-public class FinancialEntryController : ControllerBase
+public sealed class FinancialEntryController : ControllerBase
 {
     private readonly IFinancialEntryService _financialEntryService;
 
@@ -24,7 +24,7 @@ public class FinancialEntryController : ControllerBase
         var newEntry = await _financialEntryService.CreateEntryAsync(financialEntryDto);
         return Ok(newEntry);
     }
-    
+
 
     [HttpGet("GetAll")]
     public async Task<IActionResult> GetAllAsync()
@@ -43,7 +43,7 @@ public class FinancialEntryController : ControllerBase
             return NotFound("O evento não foi encontrado");
         return Ok(entry);
     }
-    
+
     [HttpPut("UpdateById")]
     public async Task<IActionResult> UpdateEntryAsync(Guid entryId, [FromQuery] FinancialEntryDto financialEntryDto)
     {

@@ -1,7 +1,7 @@
 ﻿using CashFlowAPI.Domain.Entities;
 
 namespace CashFlowAPI.Application.Dtos;
-public class FinancialEntryDto
+public sealed class FinancialEntryDto
 {
     public Guid SheetId { get; set; }
     public string Name { get; set; }

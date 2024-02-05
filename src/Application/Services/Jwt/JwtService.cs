@@ -8,7 +8,7 @@ using System.Text;
 
 namespace CashFlowAPI.Application.Services.Jwt
 {
-    public class JwtService : IJwtService
+    public sealed class JwtService : IJwtService
     {
         private readonly IConfiguration _configuration;
         public JwtService(IConfiguration configuration)
@@ -37,7 +37,7 @@ namespace CashFlowAPI.Application.Services.Jwt
                 {
                     Id = Guid.Parse(jwtSecurityToken.Claims.FirstOrDefault(u => u.Type == "nameidentifier")?.Value),
                     Email = jwtSecurityToken.Claims.FirstOrDefault(u => u.Type == "email")?.Value,
-                    Role = jwtSecurityToken.Claims.FirstOrDefault(u=>u.Type =="role")?.Value
+                    Role = jwtSecurityToken.Claims.FirstOrDefault(u => u.Type == "role")?.Value
                 }
             );
         }

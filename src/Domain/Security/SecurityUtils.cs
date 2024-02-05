@@ -3,7 +3,7 @@ using System.Security.Cryptography;
 using System.Text;
 
 namespace CashFlowAPI.Domain.Security;
-public class SecurityUtils
+public sealed class SecurityUtils
 {
     public static byte[] GenerateSalt()
     {

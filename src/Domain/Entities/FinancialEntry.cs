@@ -2,7 +2,7 @@
 using CashFlowAPI.Domain.ValueObjects;
 
 namespace CashFlowAPI.Domain.Entities;
-public class FinancialEntry : Entity
+public sealed class FinancialEntry : Entity
 {
     public Guid SheetId { get; set; }
     public Sheet Sheet { get; set; }
@@ -12,7 +12,7 @@ public class FinancialEntry : Entity
     public string Category { get; set; }
 
     protected FinancialEntry() { }
-    public void Update(string name, decimal value , string category, DateOnly entrydate)
+    public void Update(string name, decimal value, string category, DateOnly entrydate)
     {
         Name = name;
         EntryDate = entrydate;

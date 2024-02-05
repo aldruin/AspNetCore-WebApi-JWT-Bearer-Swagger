@@ -7,7 +7,7 @@ namespace CashFlowAPI.Api.Controllers;
 [Route("api/[Controller]")]
 [ApiController]
 [Authorize]
-public class FinancialExpenseController : ControllerBase
+public sealed class FinancialExpenseController : ControllerBase
 {
     private readonly IFinancialExpenseService _financialExpenseService;
 

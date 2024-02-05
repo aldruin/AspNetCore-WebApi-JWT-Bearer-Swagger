@@ -1,5 +1,5 @@
 ﻿namespace CashFlowAPI.Application.Dtos;
-public class FinancialExpenseDto
+public sealed class FinancialExpenseDto
 {
     public Guid SheetId { get; set; }
     public string Name { get; set; }

@@ -3,7 +3,7 @@ using FluentValidation;
 using System.Text.RegularExpressions;
 
 namespace CashFlowAPI.Domain.Rules;
-public class EmailValidator : AbstractValidator<Email>
+public sealed class EmailValidator : AbstractValidator<Email>
 {
     private const string Pattern = @"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*";
 

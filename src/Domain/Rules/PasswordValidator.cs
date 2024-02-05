@@ -3,7 +3,7 @@ using FluentValidation;
 using System.Text.RegularExpressions;
 
 namespace CashFlowAPI.Domain.Rules;
-public class PasswordValidator : AbstractValidator<Password>
+public sealed class PasswordValidator : AbstractValidator<Password>
 {
     private const string Pattern = @"^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$";
 

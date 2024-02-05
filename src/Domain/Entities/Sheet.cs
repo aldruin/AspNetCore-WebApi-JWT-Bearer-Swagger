@@ -2,7 +2,7 @@
 using CashFlowAPI.Domain.Common;
 
 namespace CashFlowAPI.Domain.Entities;
-public class Sheet : Entity
+public sealed class Sheet : Entity
 {
     public Guid UserId { get; set; }
     public string Name { get; set; }
