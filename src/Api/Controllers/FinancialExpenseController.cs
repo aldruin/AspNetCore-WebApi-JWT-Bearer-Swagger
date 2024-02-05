@@ -16,45 +16,63 @@ public sealed class FinancialExpenseController : ControllerBase
         _financialExpenseService = financialExpenseService;
     }
 
-    [HttpPost("Create")]
+    [HttpPost("expenses")]
     public async Task<IActionResult> CreateExpenseAsync([FromQuery] FinancialExpenseDto financialExpenseDto)
     {
         if (financialExpenseDto == null)
+        {
             return BadRequest("Dados de evento inválidos");
+        }
+
         var newExpense = await _financialExpenseService.CreateExpenseAsync(financialExpenseDto);
         return Ok(newExpense);
     }
 
-
-    [HttpGet("GetAll")]
+    [HttpGet("expenses")]
     public async Task<IActionResult> GetAllAsync()
     {
-        var expense = await _financialExpenseService.GetAllAsync();
-        if (expense == null | !expense.Any())
+        var expenses = await _financialExpenseService.GetAllAsync();
+        if (expenses == null || !expenses.Any())
+        {
             return NotFound("Nenhum evento encontrado");
-        return Ok(expense);
+        }
+
+        return Ok(expenses);
     }
 
-    [HttpGet("GetById")]
+    [HttpGet("expenses/{expenseId}")]
     public async Task<IActionResult> GetByIdAsync(Guid expenseId)
     {
         var expense = await _financialExpenseService.GetExpenseById(expenseId);
         if (expense == null)
+        {
             return NotFound("O evento não foi encontrado");
+        }
+
         return Ok(expense);
     }
 
-    [HttpPut("UpdateById")]
+    [HttpPut("expenses/{expenseId}")]
     public async Task<IActionResult> UpdateEntryAsync(Guid expenseId, [FromQuery] FinancialExpenseDto financialExpenseDto)
     {
         var expenseUpdated = await _financialExpenseService.UpdateExpenseAsync(financialExpenseDto, expenseId);
+        if (expenseUpdated == null)
+        {
+            return NotFound("Nenhum evento encontrado para atualizar");
+        }
+
         return Ok(expenseUpdated);
     }
 
-    [HttpDelete("DeleteById")]
+    [HttpDelete("expenses/{expenseId}")]
     public async Task<IActionResult> DeleteExpenseAsync(Guid expenseId)
     {
         var expense = await _financialExpenseService.DeleteExpenseAsync(expenseId);
-        return Ok("Evento excluido com sucesso");
+        if (expense == null)
+        {
+            return NotFound("Nenhum evento encontrado para excluir");
+        }
+
+        return Ok("Evento excluído com sucesso");
     }
 }

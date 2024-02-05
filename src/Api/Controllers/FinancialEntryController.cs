@@ -16,45 +16,63 @@ public sealed class FinancialEntryController : ControllerBase
         _financialEntryService = financialEntryService;
     }
 
-    [HttpPost("Create")]
+    [HttpPost("entries")]
     public async Task<IActionResult> CreateEntryAsync([FromQuery] FinancialEntryDto financialEntryDto)
     {
         if (financialEntryDto == null)
+        {
             return BadRequest("Dados de evento inválidos");
+        }
+
         var newEntry = await _financialEntryService.CreateEntryAsync(financialEntryDto);
         return Ok(newEntry);
     }
 
-
-    [HttpGet("GetAll")]
+    [HttpGet("entries")]
     public async Task<IActionResult> GetAllAsync()
     {
-        var entry = await _financialEntryService.GetAllAsync();
-        if (entry == null | !entry.Any())
+        var entries = await _financialEntryService.GetAllAsync();
+        if (entries == null || !entries.Any())
+        {
             return NotFound("Nenhum evento encontrado");
-        return Ok(entry);
+        }
+
+        return Ok(entries);
     }
 
-    [HttpGet("GetById")]
+    [HttpGet("entries/{entryId}")]
     public async Task<IActionResult> GetByIdAsync(Guid entryId)
     {
         var entry = await _financialEntryService.GetEntryById(entryId);
         if (entry == null)
+        {
             return NotFound("O evento não foi encontrado");
+        }
+
         return Ok(entry);
     }
 
-    [HttpPut("UpdateById")]
+    [HttpPut("entries/{entryId}")]
     public async Task<IActionResult> UpdateEntryAsync(Guid entryId, [FromQuery] FinancialEntryDto financialEntryDto)
     {
         var entryUpdated = await _financialEntryService.UpdateEntryAsync(financialEntryDto, entryId);
+        if (entryUpdated == null)
+        {
+            return NotFound("Nenhum evento encontrado para atualizar");
+        }
+
         return Ok(entryUpdated);
     }
 
-    [HttpDelete("DeleteById")]
+    [HttpDelete("entries/{entryId}")]
     public async Task<IActionResult> DeleteEntryAsync(Guid entryId)
     {
         var entry = await _financialEntryService.DeleteEntryAsync(entryId);
-        return Ok("Evento excluido com sucesso");
+        if (entry == null)
+        {
+            return NotFound("Nenhum evento encontrado para excluir");
+        }
+
+        return Ok("Evento excluído com sucesso");
     }
 }
