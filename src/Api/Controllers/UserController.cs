@@ -7,7 +7,7 @@ using System.Security.Claims;
 namespace CashFlowAPI.Api.Controllers;
 [Route("api/[Controller]")]
 [ApiController]
-//[Authorize]
+
 public sealed class UserController : ControllerBase
 {
     private readonly IUserService _userService;
@@ -27,6 +27,7 @@ public sealed class UserController : ControllerBase
         return Ok(newUser);
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpGet("users")]
     public async Task<IActionResult> GetAllAsync()
     {
@@ -36,6 +37,7 @@ public sealed class UserController : ControllerBase
         return Ok(users);
     }
 
+    [Authorize]
     [HttpGet("users/{userId}")]
     public async Task<IActionResult> GetByIdAsync(Guid userId)
     {
@@ -45,6 +47,7 @@ public sealed class UserController : ControllerBase
         return Ok(user);
     }
 
+    [Authorize]
     [HttpPut("users/{userId}")]
     public async Task<IActionResult> UpdateUserAsync(Guid userId, [FromQuery] UserDto userDto)
     {
@@ -52,6 +55,7 @@ public sealed class UserController : ControllerBase
         return Ok(userUpdated);
     }
 
+    [Authorize]
     [HttpDelete("users/{userId}")]
     public async Task<IActionResult> DeleteUserAsync(Guid userId)
     {
