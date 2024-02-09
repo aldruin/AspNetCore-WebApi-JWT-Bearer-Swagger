@@ -1,11 +1,11 @@
 ﻿using CashFlowAPI.Application.Dtos;
 using CashFlowAPI.Application.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CashFlowAPI.Api.Controllers;
 [Route("api/[Controller]")]
 [ApiController]
-//[Authorize]
 public sealed class SheetController : ControllerBase
 {
     private readonly ISheetService _sheetService;
@@ -14,46 +14,51 @@ public sealed class SheetController : ControllerBase
         _sheetService = sheetService;
     }
 
-    [HttpPost("sheets")]
-    public async Task<IActionResult> CreateSheetAsync([FromQuery] SheetDto sheetDto)
+    [Authorize]
+    [HttpPost("Create")]
+    public async Task<IActionResult> CreateSheetAsync([FromBody] SheetDto sheetDto)
     {
         var newSheet = await _sheetService.CreateSheetAsync(sheetDto);
         return Ok(newSheet);
     }
 
-    [HttpGet("sheets")]
-    public async Task<IActionResult> GetAllAsync()
+    [Authorize]
+    [HttpGet("GetAll")]
+    public async Task<IActionResult> GetAllByUserIdAsync()
     {
-        var sheets = await _sheetService.GetAllAsync();
+        var sheets = await _sheetService.GetAllByUserIdAsync();
         if (sheets == null || !sheets.Any())
-            return NotFound("Nenhuma planilha encontrada.");
+            return NotFound("Planilha não encontrada com o ID fornecido.");
         return Ok(sheets);
     }
 
-    [HttpGet("sheets/{sheetId}")]
+    [Authorize]
+    [HttpGet("Get/{sheetId}")]
     public async Task<IActionResult> GetByIdAsync(Guid sheetId)
     {
         var sheet = await _sheetService.GetByIdAsync(sheetId);
         if (sheet == null)
-            return NotFound("Nenhuma planilha encontrada.");
+            return NotFound("Planilha não encontrada com o ID fornecido.");
         return Ok(sheet);
     }
 
-    [HttpPut("sheets/{sheetId}")]
-    public async Task<IActionResult> UpdateByIdAsync(Guid sheetId, [FromQuery] SheetDto sheetDto)
+    [Authorize]
+    [HttpPut("Update/{sheetId}")]
+    public async Task<IActionResult> UpdateByIdAsync(Guid sheetId, [FromBody] SheetDto sheetDto)
     {
         var sheet = await _sheetService.UpdateByIdAsync(sheetId, sheetDto);
         if (sheet == null)
-            return NotFound("Nenhuma planilha encontrada.");
+            return NotFound("Planilha não encontrada com o ID fornecido.");
         return Ok(sheet);
     }
 
-    [HttpDelete("sheets/{sheetId}")]
+    [Authorize]
+    [HttpDelete("Delete/{sheetId}")]
     public async Task<IActionResult> DeleteByIdAsync(Guid sheetId)
     {
         var sheet = await _sheetService.DeleteByIdAsync(sheetId);
         if (sheet == null)
-            return NotFound("Nenhuma planilha encontrada.");
+            return NotFound("Planilha não encontrada com o ID fornecido.");
         return Ok("Planilha excluída com sucesso");
     }
 }

@@ -7,5 +7,5 @@ public interface IFinancialEntryService
     Task<FinancialEntryDto> UpdateEntryAsync(FinancialEntryDto financialEntryDto, Guid entryId);
     Task<FinancialEntryDto> DeleteEntryAsync(Guid entryId);
     Task<FinancialEntryDto> GetEntryById(Guid entryId);
-    Task<List<FinancialEntryDto>> GetAllAsync();
+    Task<List<FinancialEntryDto>> GetAllAsync(Guid sheetId);
 }

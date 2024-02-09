@@ -2,7 +2,6 @@
 using CashFlowAPI.Application.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
 
 namespace CashFlowAPI.Api.Controllers;
 [Route("api/[Controller]")]
@@ -17,7 +16,7 @@ public sealed class UserController : ControllerBase
         _userService = userService;
     }
 
-    [HttpPost("users")]
+    [HttpPost("Create")]
     public async Task<IActionResult> CreateUserAsync([FromQuery] UserDto userDto)
     {
         if (!ModelState.IsValid)
@@ -28,7 +27,7 @@ public sealed class UserController : ControllerBase
     }
 
     [Authorize(Roles = "Admin")]
-    [HttpGet("users")]
+    [HttpGet("GetAll")]
     public async Task<IActionResult> GetAllAsync()
     {
         var users = await _userService.GetAllAsync();
@@ -38,17 +37,17 @@ public sealed class UserController : ControllerBase
     }
 
     [Authorize]
-    [HttpGet("users/{userId}")]
-    public async Task<IActionResult> GetByIdAsync(Guid userId)
+    [HttpGet("Get")]
+    public async Task<IActionResult> GetByIdAsync()
     {
-        var user = await _userService.GetUserById(userId);
+        var user = await _userService.GetUserById();
         if (user == null)
             return NotFound("O usuário não foi encontrado");
         return Ok(user);
     }
 
     [Authorize]
-    [HttpPut("users/{userId}")]
+    [HttpPut("Update/{userId}")]
     public async Task<IActionResult> UpdateUserAsync(Guid userId, [FromQuery] UserDto userDto)
     {
         var userUpdated = await _userService.UpdateUserAsync(userDto, userId);
@@ -56,7 +55,7 @@ public sealed class UserController : ControllerBase
     }
 
     [Authorize]
-    [HttpDelete("users/{userId}")]
+    [HttpDelete("Delete/{userId}")]
     public async Task<IActionResult> DeleteUserAsync(Guid userId)
     {
         var user = await _userService.DeleteUserAsync(userId);

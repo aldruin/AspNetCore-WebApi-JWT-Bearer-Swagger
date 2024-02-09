@@ -7,5 +7,5 @@ public interface IFinancialExpenseService
     Task<FinancialExpenseDto> UpdateExpenseAsync(FinancialExpenseDto financialExpenseDto, Guid expenseId);
     Task<FinancialExpenseDto> DeleteExpenseAsync(Guid expenseId);
     Task<FinancialExpenseDto> GetExpenseById(Guid expenseId);
-    Task<List<FinancialExpenseDto>> GetAllAsync();
+    Task<List<FinancialExpenseDto>> GetAllAsync(Guid sheetId);
 }

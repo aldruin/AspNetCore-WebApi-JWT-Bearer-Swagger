@@ -19,19 +19,14 @@ public sealed class FinancialExpenseController : ControllerBase
     [HttpPost("expenses")]
     public async Task<IActionResult> CreateExpenseAsync([FromQuery] FinancialExpenseDto financialExpenseDto)
     {
-        if (financialExpenseDto == null)
-        {
-            return BadRequest("Dados de evento inválidos");
-        }
-
         var newExpense = await _financialExpenseService.CreateExpenseAsync(financialExpenseDto);
         return Ok(newExpense);
     }
 
     [HttpGet("expenses")]
-    public async Task<IActionResult> GetAllAsync()
+    public async Task<IActionResult> GetAllAsync(Guid sheetId)
     {
-        var expenses = await _financialExpenseService.GetAllAsync();
+        var expenses = await _financialExpenseService.GetAllAsync(sheetId);
         if (expenses == null || !expenses.Any())
         {
             return NotFound("Nenhum evento encontrado");
