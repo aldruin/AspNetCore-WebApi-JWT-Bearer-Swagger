@@ -16,14 +16,14 @@ public sealed class FinancialExpenseController : ControllerBase
         _financialExpenseService = financialExpenseService;
     }
 
-    [HttpPost("expenses")]
+    [HttpPost("create")]
     public async Task<IActionResult> CreateExpenseAsync([FromQuery] FinancialExpenseDto financialExpenseDto)
     {
         var newExpense = await _financialExpenseService.CreateExpenseAsync(financialExpenseDto);
         return Ok(newExpense);
     }
 
-    [HttpGet("expenses")]
+    [HttpGet("getall")]
     public async Task<IActionResult> GetAllAsync(Guid sheetId)
     {
         var expenses = await _financialExpenseService.GetAllAsync(sheetId);
@@ -35,7 +35,7 @@ public sealed class FinancialExpenseController : ControllerBase
         return Ok(expenses);
     }
 
-    [HttpGet("expenses/{expenseId}")]
+    [HttpGet("get/{expenseId}")]
     public async Task<IActionResult> GetByIdAsync(Guid expenseId)
     {
         var expense = await _financialExpenseService.GetExpenseById(expenseId);
@@ -47,7 +47,7 @@ public sealed class FinancialExpenseController : ControllerBase
         return Ok(expense);
     }
 
-    [HttpPut("expenses/{expenseId}")]
+    [HttpPut("update/{expenseId}")]
     public async Task<IActionResult> UpdateEntryAsync(Guid expenseId, [FromQuery] FinancialExpenseDto financialExpenseDto)
     {
         var expenseUpdated = await _financialExpenseService.UpdateExpenseAsync(financialExpenseDto, expenseId);
@@ -59,7 +59,7 @@ public sealed class FinancialExpenseController : ControllerBase
         return Ok(expenseUpdated);
     }
 
-    [HttpDelete("expenses/{expenseId}")]
+    [HttpDelete("delete/{expenseId}")]
     public async Task<IActionResult> DeleteExpenseAsync(Guid expenseId)
     {
         var expense = await _financialExpenseService.DeleteExpenseAsync(expenseId);

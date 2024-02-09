@@ -15,7 +15,7 @@ public sealed class SheetController : ControllerBase
     }
 
     [Authorize]
-    [HttpPost("Create")]
+    [HttpPost("create")]
     public async Task<IActionResult> CreateSheetAsync([FromBody] SheetDto sheetDto)
     {
         var newSheet = await _sheetService.CreateSheetAsync(sheetDto);
@@ -23,7 +23,7 @@ public sealed class SheetController : ControllerBase
     }
 
     [Authorize]
-    [HttpGet("GetAll")]
+    [HttpGet("getall")]
     public async Task<IActionResult> GetAllByUserIdAsync()
     {
         var sheets = await _sheetService.GetAllByUserIdAsync();
@@ -33,7 +33,7 @@ public sealed class SheetController : ControllerBase
     }
 
     [Authorize]
-    [HttpGet("Get/{sheetId}")]
+    [HttpGet("get/{sheetId}")]
     public async Task<IActionResult> GetByIdAsync(Guid sheetId)
     {
         var sheet = await _sheetService.GetByIdAsync(sheetId);
@@ -43,7 +43,7 @@ public sealed class SheetController : ControllerBase
     }
 
     [Authorize]
-    [HttpPut("Update/{sheetId}")]
+    [HttpPut("update/{sheetId}")]
     public async Task<IActionResult> UpdateByIdAsync(Guid sheetId, [FromBody] SheetDto sheetDto)
     {
         var sheet = await _sheetService.UpdateByIdAsync(sheetId, sheetDto);
@@ -53,7 +53,7 @@ public sealed class SheetController : ControllerBase
     }
 
     [Authorize]
-    [HttpDelete("Delete/{sheetId}")]
+    [HttpDelete("delete/{sheetId}")]
     public async Task<IActionResult> DeleteByIdAsync(Guid sheetId)
     {
         var sheet = await _sheetService.DeleteByIdAsync(sheetId);

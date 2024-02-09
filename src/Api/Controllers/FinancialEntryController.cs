@@ -16,14 +16,14 @@ public sealed class FinancialEntryController : ControllerBase
         _financialEntryService = financialEntryService;
     }
 
-    [HttpPost("Create")]
+    [HttpPost("create")]
     public async Task<IActionResult> CreateEntryAsync([FromQuery] FinancialEntryDto financialEntryDto)
     {
         var newEntry = await _financialEntryService.CreateEntryAsync(financialEntryDto);
         return Ok(newEntry);
     }
 
-    [HttpGet("GetAll")]
+    [HttpGet("getall")]
     public async Task<IActionResult> GetAllAsync(Guid sheetId)
     {
         var entries = await _financialEntryService.GetAllAsync(sheetId);
@@ -35,7 +35,7 @@ public sealed class FinancialEntryController : ControllerBase
         return Ok(entries);
     }
 
-    [HttpGet("Get/{entryId}")]
+    [HttpGet("get/{entryId}")]
     public async Task<IActionResult> GetByIdAsync(Guid entryId)
     {
         var entry = await _financialEntryService.GetEntryById(entryId);
@@ -47,7 +47,7 @@ public sealed class FinancialEntryController : ControllerBase
         return Ok(entry);
     }
 
-    [HttpPut("Update/{entryId}")]
+    [HttpPut("update/{entryId}")]
     public async Task<IActionResult> UpdateEntryAsync(Guid entryId, [FromQuery] FinancialEntryDto financialEntryDto)
     {
         var entryUpdated = await _financialEntryService.UpdateEntryAsync(financialEntryDto, entryId);
@@ -59,7 +59,7 @@ public sealed class FinancialEntryController : ControllerBase
         return Ok(entryUpdated);
     }
 
-    [HttpDelete("Delete/{entryId}")]
+    [HttpDelete("delete/{entryId}")]
     public async Task<IActionResult> DeleteEntryAsync(Guid entryId)
     {
         var entry = await _financialEntryService.DeleteEntryAsync(entryId);

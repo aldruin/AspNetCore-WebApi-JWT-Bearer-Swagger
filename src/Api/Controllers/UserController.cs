@@ -16,7 +16,7 @@ public sealed class UserController : ControllerBase
         _userService = userService;
     }
 
-    [HttpPost("Create")]
+    [HttpPost("create")]
     public async Task<IActionResult> CreateUserAsync([FromQuery] UserDto userDto)
     {
         if (!ModelState.IsValid)
@@ -27,7 +27,7 @@ public sealed class UserController : ControllerBase
     }
 
     [Authorize(Roles = "Admin")]
-    [HttpGet("GetAll")]
+    [HttpGet("getall")]
     public async Task<IActionResult> GetAllAsync()
     {
         var users = await _userService.GetAllAsync();
@@ -37,7 +37,7 @@ public sealed class UserController : ControllerBase
     }
 
     [Authorize]
-    [HttpGet("Get")]
+    [HttpGet("get")]
     public async Task<IActionResult> GetByIdAsync()
     {
         var user = await _userService.GetUserById();
@@ -47,7 +47,7 @@ public sealed class UserController : ControllerBase
     }
 
     [Authorize]
-    [HttpPut("Update/{userId}")]
+    [HttpPut("update/{userId}")]
     public async Task<IActionResult> UpdateUserAsync(Guid userId, [FromQuery] UserDto userDto)
     {
         var userUpdated = await _userService.UpdateUserAsync(userDto, userId);
@@ -55,7 +55,7 @@ public sealed class UserController : ControllerBase
     }
 
     [Authorize]
-    [HttpDelete("Delete/{userId}")]
+    [HttpDelete("delete/{userId}")]
     public async Task<IActionResult> DeleteUserAsync(Guid userId)
     {
         var user = await _userService.DeleteUserAsync(userId);
