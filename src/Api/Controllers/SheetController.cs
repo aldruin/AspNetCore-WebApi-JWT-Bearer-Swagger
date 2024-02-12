@@ -16,7 +16,7 @@ public sealed class SheetController : ControllerBase
 
     [Authorize]
     [HttpPost("create")]
-    public async Task<IActionResult> CreateSheetAsync([FromBody] SheetDto sheetDto)
+    public async Task<IActionResult> CreateSheetAsync([FromQuery] SheetDto sheetDto)
     {
         var newSheet = await _sheetService.CreateSheetAsync(sheetDto);
         return Ok(newSheet);
@@ -44,7 +44,7 @@ public sealed class SheetController : ControllerBase
 
     [Authorize]
     [HttpPut("update/{sheetId}")]
-    public async Task<IActionResult> UpdateByIdAsync(Guid sheetId, [FromBody] SheetDto sheetDto)
+    public async Task<IActionResult> UpdateByIdAsync(Guid sheetId, [FromQuery] SheetDto sheetDto)
     {
         var sheet = await _sheetService.UpdateByIdAsync(sheetId, sheetDto);
         if (sheet == null)
